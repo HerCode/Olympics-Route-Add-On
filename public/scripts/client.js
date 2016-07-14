@@ -1,42 +1,48 @@
-angular.module('routeApp', ['ngRoute']);
+var app = angular.module('routeApp', ['ngRoute']);
 
 angular.module('routeApp').config(function($routeProvider, $locationProvider){
   $routeProvider
-  .when('/red', {
-    templateUrl:'views/red.html',
-    controller:'RedController'
+  .when('/archer', {
+    templateUrl:'views/archery.html',
+    controller:'ArcheryController'
 
-  })
-  .when('/green', {
-    templateUrl:'views/green.html',
-    controller:'GreenController'
-  })
-  .when('/blue', {
-    templateUrl:'views/blue.html',
-    controller:'BlueController'
-})
+  });
 
-.when('/orange', {
-  templateUrl:'views/orange.html',
-  controller:'OrangeController'
 
+  $locationProvider.html5Mode(true);
 });
 
-$locationProvider.html5Mode(true);
+angular.module('routeApp').controller('ArcheryController', function($scope, $http){
+  $http.get('/archer').then(function(response){
+    console.log(response);
+    $scope.archer = ('Archer is ' + response.data);
+  });
 });
 
-app.module('routeApp').controller('RedController', function($scope){
-
+angular.module('routeApp').controller('CanoekayakController', function($scope, $http){
+  $http.get('/boadie').then(function(response){
+    console.log(response);
+    $scope.archer = ('Boadie is ' + response.data);
+  });
 });
 
-app.module('routeApp').controller('GreenController', function($scope){
-
+angular.module('routeApp').controller('ModpentController', function($scope, $http){
+  $http.get('/pentathalist').then(function(response){
+    console.log(response);
+    $scope.archer = ('Pentathalist is ' + response.data);
+  });
 });
 
-app.module('routeApp').controller('BlueController', function($scope){
-
+angular.module('routeApp').controller('SyncswimController', function($scope, $http){
+  $http.get('/synchist').then(function(response){
+    console.log(response);
+    $scope.archer = ('Syncist is ' + response.data);
+  });
 });
 
-app.module('routeApp').controller('OrangeController', function($scope){
-
+angular.module('routeApp').controller('TaekwondoController', function($scope, $http){
+  $http.get('/taekwandist').then(function(response){
+    console.log(response);
+    $scope.archer = ('Taekwandist is ' + response.data);
+  });
 });
